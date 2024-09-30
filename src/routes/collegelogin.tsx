@@ -25,7 +25,7 @@ function CollegeLogin() {
 				<div className="h-full w-full bg-white lg:pl-2">
 					<div className="flex items-center justify-between">
 						<div className="w-full lg:max-w-[calc(50%-12.5px)]">
-							<div className="relative Title text-xl font-medium text-gray-800">
+							<div className="relative text-xl font-medium text-gray-800">
 								Login
 								<div className="absolute left-0 bottom-0 h-[3px] w-[25px] bg-yellow-500" />
 							</div>
