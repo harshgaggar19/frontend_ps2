@@ -11,7 +11,9 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as InspectorImport } from './routes/inspector'
 import { Route as CollegeloginImport } from './routes/collegelogin'
+import { Route as CollegeImport } from './routes/college'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as LoginInspectorImport } from './routes/login/inspector'
@@ -19,8 +21,18 @@ import { Route as LoginCollegeImport } from './routes/login/college'
 
 // Create/Update Routes
 
+const InspectorRoute = InspectorImport.update({
+  path: '/inspector',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const CollegeloginRoute = CollegeloginImport.update({
   path: '/collegelogin',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CollegeRoute = CollegeImport.update({
+  path: '/college',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -62,11 +74,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/college': {
+      id: '/college'
+      path: '/college'
+      fullPath: '/college'
+      preLoaderRoute: typeof CollegeImport
+      parentRoute: typeof rootRoute
+    }
     '/collegelogin': {
       id: '/collegelogin'
       path: '/collegelogin'
       fullPath: '/collegelogin'
       preLoaderRoute: typeof CollegeloginImport
+      parentRoute: typeof rootRoute
+    }
+    '/inspector': {
+      id: '/inspector'
+      path: '/inspector'
+      fullPath: '/inspector'
+      preLoaderRoute: typeof InspectorImport
       parentRoute: typeof rootRoute
     }
     '/login/college': {
@@ -91,7 +117,9 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/college': typeof CollegeRoute
   '/collegelogin': typeof CollegeloginRoute
+  '/inspector': typeof InspectorRoute
   '/login/college': typeof LoginCollegeRoute
   '/login/inspector': typeof LoginInspectorRoute
 }
@@ -99,7 +127,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/college': typeof CollegeRoute
   '/collegelogin': typeof CollegeloginRoute
+  '/inspector': typeof InspectorRoute
   '/login/college': typeof LoginCollegeRoute
   '/login/inspector': typeof LoginInspectorRoute
 }
@@ -108,7 +138,9 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/college': typeof CollegeRoute
   '/collegelogin': typeof CollegeloginRoute
+  '/inspector': typeof InspectorRoute
   '/login/college': typeof LoginCollegeRoute
   '/login/inspector': typeof LoginInspectorRoute
 }
@@ -118,16 +150,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/college'
     | '/collegelogin'
+    | '/inspector'
     | '/login/college'
     | '/login/inspector'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/collegelogin' | '/login/college' | '/login/inspector'
+  to:
+    | '/'
+    | '/about'
+    | '/college'
+    | '/collegelogin'
+    | '/inspector'
+    | '/login/college'
+    | '/login/inspector'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/college'
     | '/collegelogin'
+    | '/inspector'
     | '/login/college'
     | '/login/inspector'
   fileRoutesById: FileRoutesById
@@ -136,7 +179,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CollegeRoute: typeof CollegeRoute
   CollegeloginRoute: typeof CollegeloginRoute
+  InspectorRoute: typeof InspectorRoute
   LoginCollegeRoute: typeof LoginCollegeRoute
   LoginInspectorRoute: typeof LoginInspectorRoute
 }
@@ -144,7 +189,9 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CollegeRoute: CollegeRoute,
   CollegeloginRoute: CollegeloginRoute,
+  InspectorRoute: InspectorRoute,
   LoginCollegeRoute: LoginCollegeRoute,
   LoginInspectorRoute: LoginInspectorRoute,
 }
@@ -163,7 +210,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/college",
         "/collegelogin",
+        "/inspector",
         "/login/college",
         "/login/inspector"
       ]
@@ -174,8 +223,14 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
+    "/college": {
+      "filePath": "college.tsx"
+    },
     "/collegelogin": {
       "filePath": "collegelogin.tsx"
+    },
+    "/inspector": {
+      "filePath": "inspector.tsx"
     },
     "/login/college": {
       "filePath": "login/college.tsx"
