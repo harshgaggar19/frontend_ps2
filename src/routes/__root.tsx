@@ -15,7 +15,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <div className="absolute w-full h-full flex justify-center items-end p-7 ">
+      <div className="absolute z-20 bottom-0 left-[50%] -translate-x-[50%] p-7 ">
         {/* // <FloatingDockDesktop />/ */}
         <FloatingDockDesktop
           items={[
